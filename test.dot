@@ -1,0 +1,180 @@
+graph Test {
+    label = Test;
+    labelloc=tp; rankdir=TD;graph [splines=line, nodesep=0.1, ranksep=0.5];node[color=black style=filled shape=box fontcolor=white fixedsize=true width=.2 height=.1 fontsize=4];edge[penwidth=.1];
+    subgraph Generations {
+        node[color=grey style=filled fontsize=12 shape=cds fontcolor=black fixedsize=false];edge[style=invis]
+        Gen0 -- Gen1 -- Gen2 -- Gen3 -- Gen4 -- Gen5 -- Gen6 -- Gen7 -- Gen8 -- Gen9 -- Gen10 -- Gen11 -- Gen12 -- Gen13 -- Gen14 -- Gen15 -- Gen16 -- Gen17 -- Gen18 -- Gen19;
+    }
+    {rank=same;Gen0;G0P0;G0P1;G0P2;G0P3;}
+    {rank=same;Gen1;G1P0;G1P1;G1P2;G1P3;}
+    {rank=same;Gen2;G2P0;G2P1;G2P2;G2P3;}
+    {rank=same;Gen3;G3P0;G3P1;G3P2;G3P3;}
+    {rank=same;Gen4;G4P0;G4P1;G4P2;G4P3;}
+    {rank=same;Gen5;G5P0;G5P1;G5P2;G5P3;}
+    {rank=same;Gen6;G6P0;G6P1;G6P2;G6P3;}
+    {rank=same;Gen7;G7P0;G7P1;G7P2;G7P3;}
+    {rank=same;Gen8;G8P0;G8P1;G8P2;G8P3;}
+    {rank=same;Gen9;G9P0;G9P1;G9P2;G9P3;}
+    {rank=same;Gen10;G10P0;G10P1;G10P2;G10P3;}
+    {rank=same;Gen11;G11P0;G11P1;G11P2;G11P3;}
+    {rank=same;Gen12;G12P0;G12P1;G12P2;G12P3;}
+    {rank=same;Gen13;G13P0;G13P1;G13P2;G13P3;}
+    {rank=same;Gen14;G14P0;G14P1;G14P2;G14P3;}
+    {rank=same;Gen15;G15P0;G15P1;G15P2;G15P3;}
+    {rank=same;Gen16;G16P0;G16P1;G16P2;G16P3;}
+    {rank=same;Gen17;G17P0;G17P1;G17P2;G17P3;}
+    {rank=same;Gen18;G18P0;G18P1;G18P2;G18P3;}
+    {rank=same;Gen19;G19P0;G19P1;G19P2;G19P3;}
+    G0P0 -- G1P0;
+    G0P0 -- G1P1;
+    G0P0 -- G2P2;
+    G0P0 -- G2P3;
+    G0P0 -- G3P2;
+    G0P0 -- G4P0;
+    G0P0 -- G4P1;
+    G0P0 -- G4P2;
+    G0P0 -- G4P3;
+    G0P0 -- G5P0;
+    G0P0 -- G5P1;
+    G0P0 -- G5P2;
+    G0P0 -- G6P2;
+    G0P0 -- G6P3;
+    G0P0 -- G7P1;
+    G0P0 -- G7P2;
+    G0P0 -- G7P3;
+    G0P0 -- G8P0;
+    G0P0 -- G8P2;
+    G0P0 -- G8P3;
+    G0P0 -- G9P1;
+    G0P0 -- G9P3;
+    G0P0 -- G10P1;
+    G0P0 -- G10P3;
+    G0P0 -- G11P0;
+    G0P0 -- G11P3;
+    G0P0 -- G12P0;
+    G0P0 -- G12P1;
+    G0P0 -- G12P2;
+    G0P0 -- G12P3;
+    G0P0 -- G13P0;
+    G0P0 -- G13P2;
+    G0P0 -- G13P3;
+    G0P0 -- G14P3;
+    G0P0 -- G16P0;
+    G0P0 -- G16P1;
+    G0P0 -- G16P2;
+    G0P0 -- G16P3;
+    G0P0 -- G17P1;
+    G0P0 -- G17P3;
+    G0P0 -- G18P0;
+    G0P0 -- G18P1;
+    G0P0 -- G18P2;
+    G0P0 -- G18P3;
+    G0P0 -- G19P0;
+    G0P0 -- G19P1;
+    G0P0 -- G19P3;
+    G0P1 -- G1P1;
+    G0P1 -- G1P2;
+    G0P1 -- G2P1;
+    G0P1 -- G2P2;
+    G0P1 -- G3P3;
+    G0P1 -- G4P0;
+    G0P1 -- G4P2;
+    G0P1 -- G5P3;
+    G0P1 -- G6P1;
+    G0P1 -- G6P2;
+    G0P1 -- G8P0;
+    G0P1 -- G8P1;
+    G0P1 -- G8P3;
+    G0P1 -- G9P2;
+    G0P1 -- G9P3;
+    G0P1 -- G10P0;
+    G0P1 -- G10P2;
+    G0P1 -- G10P3;
+    G0P1 -- G11P1;
+    G0P1 -- G11P2;
+    G0P1 -- G12P0;
+    G0P1 -- G12P2;
+    G0P1 -- G13P0;
+    G0P1 -- G13P1;
+    G0P1 -- G14P0;
+    G0P1 -- G14P1;
+    G0P1 -- G15P1;
+    G0P1 -- G15P2;
+    G0P1 -- G15P3;
+    G0P1 -- G16P3;
+    G0P1 -- G17P0;
+    G0P1 -- G17P2;
+    G0P1 -- G19P0;
+    G0P1 -- G19P1;
+    G0P1 -- G19P2;
+    G0P2 -- G1P3;
+    G0P2 -- G2P0;
+    G0P2 -- G2P1;
+    G0P2 -- G3P0;
+    G0P2 -- G3P1;
+    G0P2 -- G5P0;
+    G0P2 -- G6P0;
+    G0P2 -- G6P1;
+    G0P2 -- G6P3;
+    G0P2 -- G7P0;
+    G0P2 -- G7P3;
+    G0P2 -- G9P0;
+    G0P2 -- G12P3;
+    G0P2 -- G14P2;
+    G0P2 -- G15P0;
+    G0P2 -- G15P1;
+    G0P2 -- G16P1;
+    G0P3 -- G1P0;
+    G0P3 -- G1P2;
+    G0P3 -- G1P3;
+    G0P3 -- G2P0;
+    G0P3 -- G2P3;
+    G0P3 -- G3P0;
+    G0P3 -- G3P1;
+    G0P3 -- G3P2;
+    G0P3 -- G3P3;
+    G0P3 -- G4P1;
+    G0P3 -- G4P3;
+    G0P3 -- G5P1;
+    G0P3 -- G5P2;
+    G0P3 -- G5P3;
+    G0P3 -- G6P0;
+    G0P3 -- G7P0;
+    G0P3 -- G7P1;
+    G0P3 -- G7P2;
+    G0P3 -- G8P1;
+    G0P3 -- G8P2;
+    G0P3 -- G9P0;
+    G0P3 -- G9P1;
+    G0P3 -- G9P2;
+    G0P3 -- G10P0;
+    G0P3 -- G10P1;
+    G0P3 -- G10P2;
+    G0P3 -- G11P0;
+    G0P3 -- G11P1;
+    G0P3 -- G11P2;
+    G0P3 -- G11P3;
+    G0P3 -- G12P1;
+    G0P3 -- G13P1;
+    G0P3 -- G13P2;
+    G0P3 -- G13P3;
+    G0P3 -- G14P0;
+    G0P3 -- G14P1;
+    G0P3 -- G14P2;
+    G0P3 -- G14P3;
+    G0P3 -- G15P0;
+    G0P3 -- G15P2;
+    G0P3 -- G15P3;
+    G0P3 -- G16P0;
+    G0P3 -- G16P2;
+    G0P3 -- G17P0;
+    G0P3 -- G17P1;
+    G0P3 -- G17P2;
+    G0P3 -- G17P3;
+    G0P3 -- G18P0;
+    G0P3 -- G18P1;
+    G0P3 -- G18P2;
+    G0P3 -- G18P3;
+    G0P3 -- G19P2;
+    G0P3 -- G19P3;
+}
