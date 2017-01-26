@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Patent {
 
+	String color;
+
 	ArrayList<Patent> parents;
 	ArrayList<Patent> children;
 
@@ -32,8 +34,6 @@ public class Patent {
 
 		this.parents = new ArrayList<Patent>();
 		this.children = new ArrayList<Patent>();
-
-		// do any of the things needed to initialize a patent
 	}
 
 	public boolean isValidParent(Patent parent) {
@@ -90,23 +90,69 @@ public class Patent {
 	}
 
 	public float getFactorPoints(Patent child) {
-
-		ArrayList<Float> effects = new ArrayList<Float>();
-
-		// age effect
-		effects.add(Parameters.CalculateAgeFactor(child, this));
-
-		// rich effect
-		effects.add(Parameters.CalculateRichFactor(child, this));
-
-		return average(effects);
+		return Parameters.CalculateFactors(child, this);
 	}
 
-	private float average(ArrayList<Float> floats) {
-		float t = 0f;
-		for (float f : floats) {
-			t += f;
+	public String getColor() {
+		return this.color;
+	}
+
+	public void setColor(String s) {
+		this.color = s;
+	}
+
+	public int getColorIndex() {
+		return patentColors.indexOf(this.getColor());
+	}
+
+	public boolean isColor(String s) {
+		return s.equalsIgnoreCase(this.getColor());
+	}
+
+	static ArrayList<String> patentColors;
+	static int currentPatentColor = 0;
+
+	public static void generatePatentColors() {
+		patentColors = new ArrayList<String>();
+
+		patentColors.add("red");
+		patentColors.add("indigo");
+		patentColors.add("blue");
+		patentColors.add("green");
+		patentColors.add("purple");
+		patentColors.add("cyan");
+		patentColors.add("tan");
+		patentColors.add("darkgreen");
+	}
+
+	static String getNextPatentColor() {
+		String s = patentColors.get(currentPatentColor);
+		currentPatentColor++;
+		if (currentPatentColor > patentColors.size() - 1) {
+			currentPatentColor = 0;
 		}
-		return t / floats.size();
+		return s;
+	}
+
+	public void calculateColor() {
+		int[] colorCounts = new int[patentColors.size()];
+		for (int x = 0; x < patentColors.size(); x++) {
+			for (Patent p : this.getParents()) {
+				if (p.getColorIndex() == x) {
+					colorCounts[x]++;
+				}
+			}
+		}
+
+		int maxCount = 0;
+		int maxCountIndex = 0;
+		for (int x = 0; x < colorCounts.length; x++) {
+			if (colorCounts[x] > maxCount) {
+				maxCount = colorCounts[x];
+				maxCountIndex = x;
+			}
+		}
+
+		this.setColor(patentColors.get(maxCountIndex));
 	}
 }

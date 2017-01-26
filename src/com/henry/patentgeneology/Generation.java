@@ -28,9 +28,12 @@ public class Generation {
 					if (!(parent == Patent.null_patent)) {
 						createCitation(p, parent);
 					}
-
 				}
+				p.calculateColor();
+			} else {
+				p.setColor(Patent.getNextPatentColor());
 			}
+
 		}
 	}
 

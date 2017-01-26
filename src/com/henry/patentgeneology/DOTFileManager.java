@@ -77,4 +77,8 @@ public class DOTFileManager {
 		bw.flush();
 		bw.close();
 	}
+
+	public void createColor(Patent p) throws IOException {
+		writeToFile("    " + p.getID() + " [color=" + p.getColor() + "]");
+	}
 }

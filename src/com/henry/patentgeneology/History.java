@@ -15,6 +15,7 @@ public class History {
 	}
 
 	public void generateHistory() {
+		Patent.generatePatentColors();
 		// repeat for each generation
 		for (int i = 0; i < Parameters.GENERATIONS; i++) {
 			addGeneration();
@@ -28,6 +29,7 @@ public class History {
 		for (Patent p : parents) {
 
 			float fp = p.getFactorPoints(child);
+
 			factorPoints.add(fp + totalFactorPoints);
 			totalFactorPoints += fp;
 		}
@@ -85,6 +87,11 @@ public class History {
 
 	// TODO Make Generate file in graphviz format
 	public void outputData() throws IOException {
+		if (Parameters.COLORS) {
+			for (Patent p : this.patents) {
+				Main.dotfile.createColor(p);
+			}
+		}
 		for (Patent p : this.patents) {
 			// System.out.print("patent - " + p.getID() + "; children - ");
 			for (Patent child : p.getChildren()) {
