@@ -1,23 +1,42 @@
-package com.henry.patentgeneology;
+package com.henry.patentgeneology.geneology;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.henry.patentgeneology.DOTFileManager;
+
 public class History {
 
-	ArrayList<Generation> generations;
+	public ArrayList<Generation> generations;
 	ArrayList<Patent> patents;
 
-	public History() {
+	public DOTFileManager dotFileManager;
+
+	public Parameters parameters;
+
+	public int generationCount;
+	public int[] patentIDCount;
+
+	public History(String name, int gens, int initpatgen,
+			int patgenprolifconst, int parentpat, int colorcount, float aes,
+			float res, float ces) throws IOException {
 		this.generations = new ArrayList<Generation>();
 		this.patents = new ArrayList<Patent>();
+
+		this.generationCount = 0;
+		this.patentIDCount = new int[gens];
+
+		this.parameters = new Parameters(name, gens, initpatgen,
+				patgenprolifconst, parentpat, colorcount, aes, res, ces);
+
+		Patent.generatePatentColors(this.parameters.COLOR_COUNT);
 	}
 
 	public void generateHistory() {
-		Patent.generatePatentColors();
+
 		// repeat for each generation
-		for (int i = 0; i < Parameters.GENERATIONS; i++) {
+		for (int i = 0; i < parameters.GENERATIONS; i++) {
 			addGeneration();
 		}
 	}
@@ -34,7 +53,7 @@ public class History {
 			totalFactorPoints += fp;
 		}
 
-		// Includes 0. Doesn't include max
+		// Include 0. Don't include max
 		float x = randFloat(0.0f, totalFactorPoints);
 		while (x == totalFactorPoints) {
 			x = randFloat(0.0f, totalFactorPoints);
@@ -87,16 +106,16 @@ public class History {
 
 	// TODO Make Generate file in graphviz format
 	public void outputData() throws IOException {
-		if (Parameters.COLORS) {
+		if (parameters.COLORS) {
 			for (Patent p : this.patents) {
-				Main.dotfile.createColor(p);
+				this.dotFileManager.createColor(p);
 			}
 		}
 		for (Patent p : this.patents) {
 			// System.out.print("patent - " + p.getID() + "; children - ");
 			for (Patent child : p.getChildren()) {
 				// System.out.print(child.getID() + ", ");
-				Main.dotfile.createRelation(p, child);
+				this.dotFileManager.createRelation(p, child);
 			}
 			// System.out.print("end; parents - ");
 			// for (Patent parent : p.getParents()) {
@@ -110,6 +129,14 @@ public class History {
 		System.out.println("Generations: " + this.generations.size());
 		System.out.println("Patents: " + this.patents.size());
 
+	}
+
+	void resetHistory() {
+
+	}
+
+	public void initDOTFile() throws IOException {
+		this.dotFileManager = new DOTFileManager();
 	}
 
 }

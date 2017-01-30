@@ -1,6 +1,9 @@
-package com.henry.patentgeneology;
+package com.henry.patentgeneology.geneology;
 
 import java.util.ArrayList;
+import java.util.Random;
+
+import com.henry.patentgeneology.Main;
 
 public class Patent {
 
@@ -12,14 +15,10 @@ public class Patent {
 	Generation generation;
 
 	private int[] patentID;
-	private static int[] patentIDCount;
 
 	public static Patent null_patent;
 
 	public Patent(Generation g) {
-		if (patentIDCount == null) {
-			patentIDCount = new int[Parameters.GENERATIONS];
-		}
 
 		if (null_patent == null) {
 			gen_null_patent();
@@ -28,12 +27,14 @@ public class Patent {
 		this.generation = g;
 		this.patentID = new int[2];
 		this.patentID[0] = this.generation.generationNumber;
-		this.patentID[1] = patentIDCount[this.generation.generationNumber];
+		this.patentID[1] = Main.history.patentIDCount[this.generation.generationNumber];
 
-		patentIDCount[this.generation.generationNumber]++;
+		Main.history.patentIDCount[this.generation.generationNumber]++;
 
 		this.parents = new ArrayList<Patent>();
 		this.children = new ArrayList<Patent>();
+
+		this.setColor(getNextPatentColor());
 	}
 
 	public boolean isValidParent(Patent parent) {
@@ -90,7 +91,7 @@ public class Patent {
 	}
 
 	public float getFactorPoints(Patent child) {
-		return Parameters.CalculateFactors(child, this);
+		return Main.history.parameters.CalculateFactors(child, this);
 	}
 
 	public String getColor() {
@@ -110,49 +111,25 @@ public class Patent {
 	}
 
 	static ArrayList<String> patentColors;
-	static int currentPatentColor = 0;
 
-	public static void generatePatentColors() {
+	static String[] rawPatentColors = { "red", "indigo", "blue", "green",
+			"purple", "cyan", "tan", "darkgreen" };
+
+	public static void generatePatentColors(int colorcount) {
 		patentColors = new ArrayList<String>();
 
-		patentColors.add("red");
-		patentColors.add("indigo");
-		patentColors.add("blue");
-		patentColors.add("green");
-		patentColors.add("purple");
-		patentColors.add("cyan");
-		patentColors.add("tan");
-		patentColors.add("darkgreen");
+		for (int x = 0; x < colorcount && x < rawPatentColors.length; x++) {
+			patentColors.add(rawPatentColors[x]);
+		}
 	}
 
 	static String getNextPatentColor() {
-		String s = patentColors.get(currentPatentColor);
-		currentPatentColor++;
-		if (currentPatentColor > patentColors.size() - 1) {
-			currentPatentColor = 0;
-		}
-		return s;
+		return patentColors.get(randInt(0, patentColors.size() - 1));
 	}
 
-	public void calculateColor() {
-		int[] colorCounts = new int[patentColors.size()];
-		for (int x = 0; x < patentColors.size(); x++) {
-			for (Patent p : this.getParents()) {
-				if (p.getColorIndex() == x) {
-					colorCounts[x]++;
-				}
-			}
-		}
-
-		int maxCount = 0;
-		int maxCountIndex = 0;
-		for (int x = 0; x < colorCounts.length; x++) {
-			if (colorCounts[x] > maxCount) {
-				maxCount = colorCounts[x];
-				maxCountIndex = x;
-			}
-		}
-
-		this.setColor(patentColors.get(maxCountIndex));
+	public static int randInt(int min, int max) {
+		Random rand = new Random();
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+		return randomNum;
 	}
 }

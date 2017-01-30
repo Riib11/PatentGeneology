@@ -1,4 +1,4 @@
-package com.henry.patentgeneology;
+package com.henry.patentgeneology.geneology;
 
 import java.util.ArrayList;
 
@@ -8,50 +8,74 @@ public class Parameters {
 	 * Adjustable parameters
 	 */
 
-	public static final String NAME = "Test";
-	public static final int GENERATIONS = 20;
+	public String NAME;
+	public int GENERATIONS;
 
-	public static boolean COLORS = true;
+	public boolean COLORS = true;
 
-	public static final float STRENGTH_AGE_EFFECT = 10.0f;
-	public static final float STRENGTH_RICH_EFFECT = 1.0f;
-	public static final float STRENGTH_COLOR_EFFECT = 10000.0f;
+	public float STRENGTH_AGE_EFFECT;
 
-	public static final String DOT_PARAMS = "labelloc=tp; rankdir=TD;"
+	public float STRENGTH_RICH_EFFECT;
+
+	public float STRENGTH_COLOR_EFFECT;
+
+	public int INITPATENTSPERGEN;
+	public int PATENTSPERGENPROLIFFACTOR;
+
+	public int PARENTSPERPAT;
+
+	public int COLOR_COUNT;
+
+	public static String DOT_PARAMS = "labelloc=tp; rankdir=TD;"
 			+ "graph [splines=polyline, nodesep=0.01, ranksep=0.5];"
 			+ "node[color=black style=filled shape=box fontcolor=white fixedsize=true width=.2 height=.1 fontsize=4];"
 			+ "edge[penwidth=.1];";
 
-	public static int PatentsPerGeneation(Generation g) {
-		return 4 + (2 * g.generationNumber);
+	public Parameters(String name, int gens, int initpatgen,
+			int patgenprolifconst, int parentpat, int colorcount, float aes,
+			float res, float ces) {
+		this.NAME = name;
+		this.GENERATIONS = gens;
+		this.INITPATENTSPERGEN = initpatgen;
+		this.PATENTSPERGENPROLIFFACTOR = patgenprolifconst;
+		this.PARENTSPERPAT = parentpat;
+		this.COLOR_COUNT = colorcount;
+		this.STRENGTH_AGE_EFFECT = aes;
+		this.STRENGTH_RICH_EFFECT = res;
+		this.STRENGTH_COLOR_EFFECT = ces;
 	}
 
-	public static int ParentsPerPatent(Patent p) {
-		return 2;
+	public int PatentsPerGeneation(Generation g) {
+		return INITPATENTSPERGEN
+				+ (PATENTSPERGENPROLIFFACTOR * g.generationNumber);
 	}
 
-	static float AgeFactorFunction(float f) {
+	public int ParentsPerPatent(Patent p) {
+		return PARENTSPERPAT;
+	}
+
+	float AgeFactorFunction(float f) {
 		// follow equation y = 1/x
-		return 1.0f / f;
+		return STRENGTH_AGE_EFFECT / f;
 	}
 
-	static float RichFactorFunction(float f) {
+	float RichFactorFunction(float f) {
 		// follow equation y = x
-		return f;
+		return STRENGTH_RICH_EFFECT * f;
 	}
 
-	static float ColorFactorFunction(float f) {
-		// folow equation y = 2x
-		return 2 * f;
+	float ColorFactorFunction(float f) {
+		// folow equation y = x
+		return STRENGTH_COLOR_EFFECT * f;
 	}
-	
+
 	/*
 	 * End of adjustable parameters
 	 */
-	
+
 	// do not change below here
 
-	public static float CalculateFactors(Patent child, Patent parent) {
+	public float CalculateFactors(Patent child, Patent parent) {
 
 		ArrayList<Float> effects = new ArrayList<Float>();
 
@@ -62,12 +86,13 @@ public class Parameters {
 		effects.add(CalculateRichFactor(child, parent));
 
 		// color effect
-		effects.add(CalculateColorFactor(child, parent));
+		// effects.add(CalculateColorFactor(child, parent));
 
-		return average(effects);
+		return sum(effects) + 1;
+		// return average(effects);
 	}
 
-	public static float CalculateAgeFactor(Patent child, Patent parent) {
+	public float CalculateAgeFactor(Patent child, Patent parent) {
 		int ageDifference = child.getGenNumber() - parent.getGenNumber();
 
 		if (ageDifference == 0) {
@@ -76,11 +101,10 @@ public class Parameters {
 
 		float result = AgeFactorFunction(ageDifference);
 
-		result *= STRENGTH_AGE_EFFECT;
 		return result;
 	}
 
-	public static float CalculateRichFactor(Patent child, Patent parent) {
+	public float CalculateRichFactor(Patent child, Patent parent) {
 		int childrenCount;
 		// only count children of concerned generation
 		ArrayList<Patent> validChildren = new ArrayList<Patent>();
@@ -96,11 +120,10 @@ public class Parameters {
 
 		float result = RichFactorFunction(childrenCount);
 
-		result *= STRENGTH_RICH_EFFECT;
 		return result;
 	}
 
-	public static float CalculateColorFactor(Patent child, Patent parent) {
+	public float CalculateColorFactor(Patent child, Patent parent) {
 		int totalParents = child.getParents().size();
 
 		if (totalParents == 0) {
@@ -120,15 +143,14 @@ public class Parameters {
 
 		float result = ColorFactorFunction(colorScore);
 
-		result *= STRENGTH_COLOR_EFFECT;
 		return result;
 	}
 
-	private static float average(ArrayList<Float> floats) {
-		float t = 0f;
+	private float sum(ArrayList<Float> floats) {
+		float t = 0;
 		for (float f : floats) {
 			t += f;
 		}
-		return t / floats.size();
+		return t + 1;
 	}
 }

@@ -7,6 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.henry.patentgeneology.geneology.Generation;
+import com.henry.patentgeneology.geneology.Parameters;
+import com.henry.patentgeneology.geneology.Patent;
+
 public class DOTFileManager {
 
 	File file;
@@ -15,13 +19,13 @@ public class DOTFileManager {
 	FileReader fr;
 
 	public DOTFileManager() throws IOException {
-		file = new File(Parameters.NAME + ".dot");
+		file = new File(Main.history.parameters.NAME + ".dot");
 		file.createNewFile();
 		fw = new FileWriter(file);
 		bw = new BufferedWriter(fw);
 
-		writeToFile("graph " + Parameters.NAME + " {");
-		writeToFile("    label = " + Parameters.NAME + ";");
+		writeToFile("graph " + Main.history.parameters.NAME + " {");
+		writeToFile("    label = " + Main.history.parameters.NAME + ";");
 		writeToFile("    " + Parameters.DOT_PARAMS);
 
 		generateGenerationsSubgraph();

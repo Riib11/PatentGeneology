@@ -1,27 +1,28 @@
-package com.henry.patentgeneology;
+package com.henry.patentgeneology.geneology;
 
 import java.util.ArrayList;
 
+import com.henry.patentgeneology.Main;
+
 public class Generation {
 
-	static int generationCount = 0;
-
-	ArrayList<Patent> patents;
-	int generationNumber;
+	public ArrayList<Patent> patents;
+	public int generationNumber;
 
 	public Generation() {
 		this.patents = new ArrayList<Patent>();
-		this.generationNumber = generationCount;
-		generationCount++;
+		this.generationNumber = Main.history.generationCount;
+		Main.history.generationCount++;
 
 		// generate patents
-		int members = Parameters.PatentsPerGeneation(this);
+		int members = Main.history.parameters.PatentsPerGeneation(this);
 		for (int x = 0; x < members; x++) {
 			Patent p = createPatent();
 
 			// add parents, if not gen0
 			if (this.generationNumber != 0) {
-				int parentsPerPatent = Parameters.ParentsPerPatent(p);
+				int parentsPerPatent = Main.history.parameters
+						.ParentsPerPatent(p);
 				Patent parent;
 				for (int y = 0; y < parentsPerPatent; y++) {
 					parent = Main.history.chooseParent(p);
@@ -29,9 +30,6 @@ public class Generation {
 						createCitation(p, parent);
 					}
 				}
-				p.calculateColor();
-			} else {
-				p.setColor(Patent.getNextPatentColor());
 			}
 
 		}

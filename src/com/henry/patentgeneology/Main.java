@@ -2,21 +2,18 @@ package com.henry.patentgeneology;
 
 import java.io.IOException;
 
+import com.henry.patentgeneology.geneology.History;
+
 public class Main {
 
-	static History history;
-	static DOTFileManager dotfile;
+	public static History history;
 
 	public static void main(String[] args) throws IOException {
 
-		history = new History();
-		history.generateHistory();
+		// gens, initpatgen, patgenprolifconst, parentpat, colorcount
+		GeneologiesManager genManager = new GeneologiesManager(5, 4, 1, 2, 4);
 
-		dotfile = new DOTFileManager();
-
-		history.outputData();
-		
-		dotfile.endFile();
+		genManager.iterateStrength("rich", 0.0f, 100.0f, 25.0f, 0.0f, 0.0f);
 
 	}
 
