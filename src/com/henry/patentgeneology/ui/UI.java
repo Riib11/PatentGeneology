@@ -7,18 +7,20 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.HashMap;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import com.henry.patentgeneology.Main;
 
 public class UI {
 
-	static int width = 800;
-	static int height = 400;
+	static int width = 470;
+	static int height = 550;
 
 	static JPanel container;
 
@@ -40,26 +42,31 @@ public class UI {
 
 		frame.add(container);
 
-		createInputField("Name: ", "name");
-		createInputField("Generations: ", "generations");
-		createInputField("Initial Patents/Gen: ", "initpatgen");
-		createInputField("Patents/Gen proliferation constant: ",
-				"patgenprolifconst");
-		createInputField("Parents/Patent: ", "parentspat");
+		createLabel("GenManager");
+		createInputField("Generations: ", "gens");
+		createInputField("Initial Patents/Gen: ", "ipg");
+		createInputField("Pat/Gen Prolif Constant: ", "pgpc");
+		createInputField("Parents/Patent: ", "ppp");
+		createInputField("Colors Avaliable: ", "colorcount");
 
-		createInputField("Age Effect Strength: ", "ageeffstr");
-		createInputField("Age Effect Function Coeff (y = c/x):",
-				"ageefffunccoef");
+		createSeperator();
 
-		createInputField("Rich Effect Strength: ", "richeffstr");
-		createInputField("Rich Effect Function Coeff (y = c*x):",
-				"richafffunccoef");
+		createLabel("Single Run");
+		createInputField("Age Effect Strength: ", "aes");
+		createInputField("Rich Effect Strength: ", "res");
+		createInputField("Color Effect Strength: ", "ces");
+		createSubmitButtonSingle("Single Geneology");
 
-		createInputField("Color Effect Strength: ", "coloreffstr");
-		createInputField("Rich Effect Function Coeff (y = c*x):",
-				"colorafffunccoef");
+		createSeperator();
 
-		createSubmitButton("Create Geneology");
+		createLabel("Iterate Run");
+		createInputField("Iterate Variable: ", "iterate_var");
+		createInputField("Start Strength: ", "start_strength");
+		createInputField("End Strength: ", "end_strength");
+		createInputField("Increment: ", "increment");
+		createInputField("Control Variable 1 Value: ", "control1");
+		createInputField("Control Variable 2 Value:", "control2");
+		createSubmitButtonIterate("Iterate Geneologies");
 
 		frame.setVisible(true);
 	}
@@ -79,17 +86,50 @@ public class UI {
 
 	}
 
-	public static void createSeperator() {
-		// container.add(new JSeparator(), SwingConstants.HORIZONTAL);
+	static Border labelBorder = BorderFactory.createRaisedBevelBorder();
+
+	public static void createLabel(String text) {
+		JLabel b = new JLabel(text);
+		b.setOpaque(true);
+		b.setFont(new Font("Arial", Font.BOLD, 20));
+		b.setBorder(labelBorder);
+
+		container.add(b);
+
+		JLabel c = new JLabel("");
+		c.setOpaque(true);
+		c.setFont(new Font("Arial", Font.PLAIN, 20));
+
+		container.add(c);
 	}
 
-	public static void createSubmitButton(String s) {
+	public static void createSeperator() {
+		JLabel c = new JLabel("");
+		c.setOpaque(true);
+		c.setFont(new Font("Arial", Font.PLAIN, 20));
+
+		container.add(c);
+
+		JLabel d = new JLabel("");
+		d.setOpaque(true);
+		d.setFont(new Font("Arial", Font.PLAIN, 20));
+
+		container.add(d);
+	}
+
+	public static void createSubmitButtonSingle(String s) {
+		JLabel c = new JLabel("");
+		c.setOpaque(true);
+		c.setFont(new Font("Arial", Font.PLAIN, 20));
+
+		container.add(c);
+
 		JButton b = new JButton();
 		b.setText(s);
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					runProgram();
+					runSingle();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -99,35 +139,56 @@ public class UI {
 		container.add(b);
 	}
 
-	public static void runProgram() throws IOException {
-		String name = getStringFromFields("name");
-		int gens = getIntFromFields("generations");
-		int initpatgen = getIntFromFields("initpatgen");
-		int patgenprolifconst = getIntFromFields("patgenprolifconst");
-		int parentpat = getIntFromFields("parentspat");
+	public static void createSubmitButtonIterate(String s) {
+		JLabel c = new JLabel("");
+		c.setOpaque(true);
+		c.setFont(new Font("Arial", Font.PLAIN, 20));
 
-		float aes = getFloatFromFields("ageeffstr");
-		float afc = getFloatFromFields("ageefffunccoef");
+		container.add(c);
 
-		float res = getFloatFromFields("richeffstr");
-		float rfc = getFloatFromFields("richafffunccoef");
+		JButton b = new JButton();
+		b.setText(s);
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					runIterate();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 
-		float ces = getFloatFromFields("coloreffstr");
-		float cfc = getFloatFromFields("colorafffunccoef");
-
-		// Main.createGeneology(name, gens, initpatgen, patgenprolifconst,
-		//		parentpat, aes, afc, res, rfc, ces, cfc);
+		container.add(b);
 	}
 
-	public static String getStringFromFields(String s) {
+	/*
+	 * createInputField("Generations: ", "gens");
+	 * createInputField("Initial Patents/Gen: ", "ipg");
+	 * createInputField("Pat/Gen Prolif Constant: ", "pgpc");
+	 * createInputField("Parents/Patent: ", "ppp");
+	 */
+
+	public static void runSingle() throws IOException {
+		Main.ui_main_single(i("gens"), i("ipg"), i("pgpc"), i("ppp"),
+				i("colorcount"), f("aes"), f("res"), f("ces"));
+	}
+
+	public static void runIterate() throws IOException {
+		Main.ui_main_iterate(i("gens"), i("ipg"), i("pgpc"), i("ppp"),
+				i("colorcount"), s("iterate_var"), f("start_strength"),
+				f("end_strength"), f("increment"), f("control1"),
+				f("control2"));
+	}
+
+	public static String s(String s) {
 		return fields.get(s).getText();
 	}
 
-	public static int getIntFromFields(String s) {
+	public static int i(String s) {
 		return Integer.valueOf(fields.get(s).getText());
 	}
 
-	public static float getFloatFromFields(String s) {
+	public static float f(String s) {
 		return Float.valueOf(fields.get(s).getText());
 	}
 }

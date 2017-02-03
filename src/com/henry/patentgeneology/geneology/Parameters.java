@@ -8,7 +8,44 @@ public class Parameters {
 	 * Adjustable parameters
 	 */
 
+	public static String DOT_PARAMS = "labelloc=tp; rankdir=TD;"
+			+ "graph [splines=polyline, nodesep=0.01, ranksep=0.5];"
+			+ "node[color=black style=filled shape=box fontcolor=white fixedsize=true width=.2 height=.1 fontsize=4];"
+			+ "edge[penwidth=.1];";
+
+	public int PatentsPerGeneation(Generation g) {
+		return INITPATENTSPERGEN
+				+ (PATENTSPERGENPROLIFFACTOR * g.generationNumber);
+	}
+
+	public int ParentsPerPatent(Patent p) {
+		return PARENTSPERPAT;
+	}
+
+	float AgeFactorFunction(float f) {
+		// follow equation y = 1/x^a
+		// System.out.println(1 / (f * STRENGTH_AGE_EFFECT));
+		return (float) (1 / Math.pow(f, STRENGTH_AGE_EFFECT));
+	}
+
+	float RichFactorFunction(float f) {
+		// follow equation y = ax
+		return STRENGTH_RICH_EFFECT * f;
+	}
+
+	float ColorFactorFunction(float f) {
+		// folow equation y = ax
+		return STRENGTH_COLOR_EFFECT * f;
+	}
+
+	/*
+	 * End of adjustable parameters
+	 */
+
+	// do not change below here
+
 	public String NAME;
+	public String FILE_NAME;
 	public int GENERATIONS;
 
 	public boolean COLORS = true;
@@ -26,15 +63,8 @@ public class Parameters {
 
 	public int COLOR_COUNT;
 
-	public static String DOT_PARAMS = "labelloc=tp; rankdir=TD;"
-			+ "graph [splines=polyline, nodesep=0.01, ranksep=0.5];"
-			+ "node[color=black style=filled shape=box fontcolor=white fixedsize=true width=.2 height=.1 fontsize=4];"
-			+ "edge[penwidth=.1];";
-
-	public Parameters(String name, int gens, int initpatgen,
-			int patgenprolifconst, int parentpat, int colorcount, float aes,
-			float res, float ces) {
-		this.NAME = name;
+	public Parameters(int gens, int initpatgen, int patgenprolifconst,
+			int parentpat, int colorcount, float aes, float res, float ces) {
 		this.GENERATIONS = gens;
 		this.INITPATENTSPERGEN = initpatgen;
 		this.PATENTSPERGENPROLIFFACTOR = patgenprolifconst;
@@ -43,37 +73,10 @@ public class Parameters {
 		this.STRENGTH_AGE_EFFECT = aes;
 		this.STRENGTH_RICH_EFFECT = res;
 		this.STRENGTH_COLOR_EFFECT = ces;
+
+		this.NAME = createName();
+		this.FILE_NAME = createFileName();
 	}
-
-	public int PatentsPerGeneation(Generation g) {
-		return INITPATENTSPERGEN
-				+ (PATENTSPERGENPROLIFFACTOR * g.generationNumber);
-	}
-
-	public int ParentsPerPatent(Patent p) {
-		return PARENTSPERPAT;
-	}
-
-	float AgeFactorFunction(float f) {
-		// follow equation y = 1/x
-		return STRENGTH_AGE_EFFECT / f;
-	}
-
-	float RichFactorFunction(float f) {
-		// follow equation y = x
-		return STRENGTH_RICH_EFFECT * f;
-	}
-
-	float ColorFactorFunction(float f) {
-		// folow equation y = x
-		return STRENGTH_COLOR_EFFECT * f;
-	}
-
-	/*
-	 * End of adjustable parameters
-	 */
-
-	// do not change below here
 
 	public float CalculateFactors(Patent child, Patent parent) {
 
@@ -86,17 +89,21 @@ public class Parameters {
 		effects.add(CalculateRichFactor(child, parent));
 
 		// color effect
-		// effects.add(CalculateColorFactor(child, parent));
+		effects.add(CalculateColorFactor(child, parent));
 
-		return sum(effects) + 1;
-		// return average(effects);
+		// System.out.println("C:" + child.getID() + "; P: " + parent.getID()
+		// + "; Age Score: " + sum(effects));
+		// System.out.println("C:" + child.getID() + "; P: " + parent.getID()
+		// + "; Age Score: " + (effects.get(0)));
+
+		return sum(effects);
 	}
 
 	public float CalculateAgeFactor(Patent child, Patent parent) {
 		int ageDifference = child.getGenNumber() - parent.getGenNumber();
 
-		if (ageDifference == 0) {
-			return 0;
+		if (ageDifference == 0f) {
+			return 0f;
 		}
 
 		float result = AgeFactorFunction(ageDifference);
@@ -112,8 +119,10 @@ public class Parameters {
 			if (child.getGenNumber() != c.getGenNumber()) {
 				validChildren.add(c);
 			} else {
-				// don't add, because child isn't valid if its in the same
-				// generation as the concerned child
+				/*
+				 * don't add, because child isn't valid if its in the same
+				 * generation as the concerned child
+				 */
 			}
 		}
 		childrenCount = validChildren.size();
@@ -124,22 +133,10 @@ public class Parameters {
 	}
 
 	public float CalculateColorFactor(Patent child, Patent parent) {
-		int totalParents = child.getParents().size();
-
-		if (totalParents == 0) {
-			return 0;
+		float colorScore = 0f;
+		if (child.getColor().equalsIgnoreCase(parent.getColor())) {
+			colorScore = 1f;
 		}
-
-		int[] colorCounts = new int[Patent.patentColors.size()];
-		for (int x = 0; x < Patent.patentColors.size(); x++) {
-			for (Patent p : child.getParents()) {
-				if (p.getColorIndex() == x) {
-					colorCounts[x]++;
-				}
-			}
-		}
-
-		float colorScore = colorCounts[parent.getColorIndex()] / totalParents;
 
 		float result = ColorFactorFunction(colorScore);
 
@@ -151,6 +148,24 @@ public class Parameters {
 		for (float f : floats) {
 			t += f;
 		}
-		return t + 1;
+		return t;
+	}
+
+	private String createName() {
+		return "\"Age=" + String.valueOf(this.STRENGTH_AGE_EFFECT) + ", Rich="
+				+ String.valueOf(this.STRENGTH_RICH_EFFECT) + ", Color="
+				+ String.valueOf(this.STRENGTH_COLOR_EFFECT) + "\"";
+	}
+
+	private String createFileName() {
+		return "A" + s(this.STRENGTH_AGE_EFFECT) + "_R"
+				+ s(this.STRENGTH_RICH_EFFECT) + "_C"
+				+ s(this.STRENGTH_COLOR_EFFECT);
+	}
+
+	private String s(float f) {
+		String s = String.valueOf(f);
+		s = s.replace(".", "");
+		return s;
 	}
 }

@@ -13,13 +13,26 @@ import com.henry.patentgeneology.geneology.Patent;
 
 public class DOTFileManager {
 
+	static String outputs_directory = "/Users/Henry/Documents/PatentGeneology/DOT/outputs/";
+
 	File file;
 	FileWriter fw;
 	BufferedWriter bw;
 	FileReader fr;
+	static File directory;
 
 	public DOTFileManager() throws IOException {
-		file = new File(Main.history.parameters.NAME + ".dot");
+		directory = new File(outputs_directory + createDirName());
+		boolean successful = directory.mkdir();
+		if (successful) {
+			// System.out.println("directory created: " + directory.getName());
+		} else {
+			// System.out.println("directory " + directory.getName()
+			// + " already exists");
+		}
+
+		file = new File(directory.getAbsoluteFile() + "/"
+				+ Main.history.parameters.FILE_NAME + ".dot");
 		file.createNewFile();
 		fw = new FileWriter(file);
 		bw = new BufferedWriter(fw);
@@ -84,5 +97,24 @@ public class DOTFileManager {
 
 	public void createColor(Patent p) throws IOException {
 		writeToFile("    " + p.getID() + " [color=" + p.getColor() + "]");
+	}
+
+	public String createDirName() {
+		if (Main.genManager.iterating) {
+			return "iterates/" + "it-" + Main.genManager.iterate_var + "("
+					+ s(Main.genManager.start_strength) + "-"
+					+ s(Main.genManager.end_strength) + ")_by-"
+					+ s(Main.genManager.increment) + ",cont1="
+					+ s(Main.genManager.control1) + ",cont2="
+					+ s(Main.genManager.control2);
+		} else {
+			return "singles/" + Main.history.parameters.FILE_NAME;
+		}
+	}
+
+	private String s(float f) {
+		String s = String.valueOf(f);
+		s = s.replace(".", "");
+		return s;
 	}
 }

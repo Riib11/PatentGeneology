@@ -91,7 +91,13 @@ public class Patent {
 	}
 
 	public float getFactorPoints(Patent child) {
+		if (Main.history.parameters.STRENGTH_AGE_EFFECT == 0
+				&& Main.history.parameters.STRENGTH_COLOR_EFFECT == 0
+				&& Main.history.parameters.STRENGTH_RICH_EFFECT == 0) {
+			return 0f;
+		}
 		return Main.history.parameters.CalculateFactors(child, this);
+
 	}
 
 	public String getColor() {

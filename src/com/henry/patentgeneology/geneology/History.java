@@ -18,17 +18,17 @@ public class History {
 	public int generationCount;
 	public int[] patentIDCount;
 
-	public History(String name, int gens, int initpatgen,
-			int patgenprolifconst, int parentpat, int colorcount, float aes,
-			float res, float ces) throws IOException {
+	public History(int gens, int initpatgen, int patgenprolifconst,
+			int parentpat, int colorcount, float aes, float res, float ces)
+			throws IOException {
 		this.generations = new ArrayList<Generation>();
 		this.patents = new ArrayList<Patent>();
 
 		this.generationCount = 0;
 		this.patentIDCount = new int[gens];
 
-		this.parameters = new Parameters(name, gens, initpatgen,
-				patgenprolifconst, parentpat, colorcount, aes, res, ces);
+		this.parameters = new Parameters(gens, initpatgen, patgenprolifconst,
+				parentpat, colorcount, aes, res, ces);
 
 		Patent.generatePatentColors(this.parameters.COLOR_COUNT);
 	}
@@ -46,23 +46,28 @@ public class History {
 		float totalFactorPoints = 0;
 		ArrayList<Float> factorPoints = new ArrayList<Float>();
 		for (Patent p : parents) {
-
 			float fp = p.getFactorPoints(child);
-
 			factorPoints.add(fp + totalFactorPoints);
 			totalFactorPoints += fp;
 		}
 
-		// Include 0. Don't include max
-		float x = randFloat(0.0f, totalFactorPoints);
-		while (x == totalFactorPoints) {
-			x = randFloat(0.0f, totalFactorPoints);
-		}
-
-		for (int i = 0; i < factorPoints.size(); i++) {
-			if (x < factorPoints.get(i)) {
-				return parents.get(i);
+		if (totalFactorPoints != 0) {
+			// Include 0. Don't include max
+			float x = randFloat(0.0f, totalFactorPoints);
+			while (x == totalFactorPoints) {
+				x = randFloat(0.0f, totalFactorPoints);
 			}
+
+			for (int i = 0; i < factorPoints.size(); i++) {
+				if (x < factorPoints.get(i)) {
+					return parents.get(i);
+
+				}
+			}
+		} else {
+			// no weighting, completely random
+			int x = randInt(0, parents.size() - 1);
+			return parents.get(x);
 		}
 
 		return null;
@@ -75,9 +80,7 @@ public class History {
 				avaliableParents.add(p);
 			}
 		}
-
 		Patent parent = chooseParentFromFactors(child, avaliableParents);
-
 		return parent;
 	}
 
@@ -112,27 +115,27 @@ public class History {
 			}
 		}
 		for (Patent p : this.patents) {
-			// System.out.print("patent - " + p.getID() + "; children - ");
 			for (Patent child : p.getChildren()) {
-				// System.out.print(child.getID() + ", ");
 				this.dotFileManager.createRelation(p, child);
 			}
-			// System.out.print("end; parents - ");
-			// for (Patent parent : p.getParents()) {
-			// System.out.print(parent.getID() + ", ");
-			// }
-			// System.out.println("end");
 		}
 
-		// System.out.println();
+		// System.out.println("Generations: " + this.generations.size());
+		// System.out.println("Patents: " + this.patents.size());
 
-		System.out.println("Generations: " + this.generations.size());
-		System.out.println("Patents: " + this.patents.size());
+		int[] counter = new int[this.parameters.GENERATIONS];
+		for (Patent p : this.patents) {
+			if (p.parents.size() != 0) {
+				for (Patent q : p.getParents()) {
+					counter[p.getGenNumber() - q.getGenNumber()]++;
+				}
+			}
+		}
 
-	}
-
-	void resetHistory() {
-
+		for (int i = 0; i < counter.length; i++) {
+			// System.out.println("Age discrepancy " + i + ": "
+			// + ((float) counter[i] / (float) patents.size()));
+		}
 	}
 
 	public void initDOTFile() throws IOException {
