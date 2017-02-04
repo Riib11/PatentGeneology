@@ -22,12 +22,12 @@ public class Main {
 		 * 
 		 * order of variables: age, rich, color
 		 */
-		genManager.iterateStrength("color", 0.0f, 1.0f, 0.1f, 1000.0f, 0.0f);
+//		genManager.iterateStrength("color", 0.0f, 1.0f, 0.1f, 1000.0f, 0.0f);
 
 		/*
 		 * age_strength, rich_strength, color_strength
 		 */
-		// genManager.createGeneology(1000.0f, 0.0f, 0.7f);
+		 genManager.createGeneology(1000.0f, 0.0f, 0.7f);
 
 	}
 

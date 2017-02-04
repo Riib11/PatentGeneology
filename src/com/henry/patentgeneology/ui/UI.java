@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import com.henry.patentgeneology.DOTFileManager;
 import com.henry.patentgeneology.Main;
 
 public class UI {
@@ -43,6 +44,7 @@ public class UI {
 		frame.add(container);
 
 		createLabel("GenManager");
+		createInputField("Target Directory: ", "absolutepath");
 		createInputField("Generations: ", "gens");
 		createInputField("Initial Patents/Gen: ", "ipg");
 		createInputField("Pat/Gen Prolif Constant: ", "pgpc");
@@ -169,15 +171,16 @@ public class UI {
 	 */
 
 	public static void runSingle() throws IOException {
+		DOTFileManager.outputs_directory = path("absolutepath");
 		Main.ui_main_single(i("gens"), i("ipg"), i("pgpc"), i("ppp"),
 				i("colorcount"), f("aes"), f("res"), f("ces"));
 	}
 
 	public static void runIterate() throws IOException {
+		DOTFileManager.outputs_directory = path("absolutepath");
 		Main.ui_main_iterate(i("gens"), i("ipg"), i("pgpc"), i("ppp"),
 				i("colorcount"), s("iterate_var"), f("start_strength"),
-				f("end_strength"), f("increment"), f("control1"),
-				f("control2"));
+				f("end_strength"), f("increment"), f("control1"), f("control2"));
 	}
 
 	public static String s(String s) {
@@ -190,5 +193,14 @@ public class UI {
 
 	public static float f(String s) {
 		return Float.valueOf(fields.get(s).getText());
+	}
+
+	public static String path(String s) {
+		s = String.valueOf(fields.get(s).getText());
+		if (s.substring(s.length() - 1, s.length()).equals("/")) {
+			return s.substring(0, s.length());
+		} else {
+			return s;
+		}
 	}
 }

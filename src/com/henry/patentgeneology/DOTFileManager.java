@@ -13,7 +13,8 @@ import com.henry.patentgeneology.geneology.Patent;
 
 public class DOTFileManager {
 
-	static String outputs_directory = "/Users/Henry/Documents/PatentGeneology/DOT/outputs/";
+//	public static String outputs_directory = "/Users/Henry/Documents/PatentGeneology/DOT";
+	public static String outputs_directory = "";
 
 	File file;
 	FileWriter fw;
@@ -22,13 +23,17 @@ public class DOTFileManager {
 	static File directory;
 
 	public DOTFileManager() throws IOException {
+		System.out.println("outputs_directory: " + outputs_directory);
+		System.out.println(createDirName());
 		directory = new File(outputs_directory + createDirName());
 		boolean successful = directory.mkdir();
+		System.out.println(directory.getAbsolutePath());
+
 		if (successful) {
-			// System.out.println("directory created: " + directory.getName());
+			System.out.println("directory created: " + directory.getName());
 		} else {
-			// System.out.println("directory " + directory.getName()
-			// + " already exists");
+			System.out.println("directory " + directory.getName()
+					+ " not created");
 		}
 
 		file = new File(directory.getAbsoluteFile() + "/"
@@ -101,14 +106,14 @@ public class DOTFileManager {
 
 	public String createDirName() {
 		if (Main.genManager.iterating) {
-			return "iterates/" + "it-" + Main.genManager.iterate_var + "("
+			return "it-" + Main.genManager.iterate_var + "("
 					+ s(Main.genManager.start_strength) + "-"
 					+ s(Main.genManager.end_strength) + ")_by-"
 					+ s(Main.genManager.increment) + ",cont1="
 					+ s(Main.genManager.control1) + ",cont2="
 					+ s(Main.genManager.control2);
 		} else {
-			return "singles/" + Main.history.parameters.FILE_NAME;
+			return Main.history.parameters.FILE_NAME;
 		}
 	}
 
