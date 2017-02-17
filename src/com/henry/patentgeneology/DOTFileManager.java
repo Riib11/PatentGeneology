@@ -13,8 +13,9 @@ import com.henry.patentgeneology.geneology.Patent;
 
 public class DOTFileManager {
 
-//	public static String outputs_directory = "/Users/Henry/Documents/PatentGeneology/DOT";
 	public static String outputs_directory = "";
+
+	public static String my_targetdir = "/Users/Henry/Documents/PatentGeneology/DOT/outputs/";
 
 	File file;
 	FileWriter fw;

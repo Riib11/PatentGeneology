@@ -9,7 +9,7 @@ public class Parameters {
 	 */
 
 	public static String DOT_PARAMS = "labelloc=tp; rankdir=TD;"
-			+ "graph [splines=polyline, nodesep=0.01, ranksep=0.5];"
+			+ "graph [size=7, ratio=expand, splines=polyline, nodesep=0.01, ranksep=0.5];"
 			+ "node[color=black style=filled shape=box fontcolor=white fixedsize=true width=.2 height=.1 fontsize=4];"
 			+ "edge[penwidth=.1];";
 

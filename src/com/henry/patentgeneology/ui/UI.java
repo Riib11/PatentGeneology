@@ -86,6 +86,10 @@ public class UI {
 
 		fields.put(name, jtf);
 
+		if (text.equalsIgnoreCase("Target Directory: ")) {
+			jtf.setText(DOTFileManager.my_targetdir);
+		}
+
 	}
 
 	static Border labelBorder = BorderFactory.createRaisedBevelBorder();
@@ -172,12 +176,14 @@ public class UI {
 
 	public static void runSingle() throws IOException {
 		DOTFileManager.outputs_directory = path("absolutepath");
+
 		Main.ui_main_single(i("gens"), i("ipg"), i("pgpc"), i("ppp"),
 				i("colorcount"), f("aes"), f("res"), f("ces"));
 	}
 
 	public static void runIterate() throws IOException {
 		DOTFileManager.outputs_directory = path("absolutepath");
+
 		Main.ui_main_iterate(i("gens"), i("ipg"), i("pgpc"), i("ppp"),
 				i("colorcount"), s("iterate_var"), f("start_strength"),
 				f("end_strength"), f("increment"), f("control1"), f("control2"));
