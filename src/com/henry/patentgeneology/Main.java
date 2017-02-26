@@ -22,12 +22,12 @@ public class Main {
 		 * 
 		 * order of variables: age, rich, color
 		 */
-//		genManager.iterateStrength("color", 0.0f, 1.0f, 0.1f, 1000.0f, 0.0f);
+		// genManager.iterateStrength("color", 0.0f, 1.0f, 0.1f, 1000.0f, 0.0f);
 
 		/*
 		 * age_strength, rich_strength, color_strength
 		 */
-		 genManager.createGeneology(1000.0f, 0.0f, 0.7f);
+		genManager.createGeneology(1000.0f, 0.0f, 0.7f);
 
 	}
 
@@ -49,6 +49,14 @@ public class Main {
 				patgenprolifconst, parentpat, colorcount);
 		genManager.iterateStrength(iterate_var, start_strength, end_strength,
 				increment, control1, control2);
+	}
+
+	public static void ui_main_single_step(String customname, int gens,
+			int initpatgen, int patgenprolifconst, int parentpat,
+			int colorcount, float aes, float res, float ces) throws IOException {
+		genManager = new GeneologiesManager(gens, initpatgen,
+				patgenprolifconst, parentpat, colorcount);
+		genManager.createGeneologyCustomName(customname, aes, res, ces);
 	}
 
 }

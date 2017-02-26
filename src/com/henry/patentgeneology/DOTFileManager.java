@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.jfree.ui.ApplicationFrame;
+
 import com.henry.patentgeneology.geneology.Generation;
 import com.henry.patentgeneology.geneology.Parameters;
 import com.henry.patentgeneology.geneology.Patent;
@@ -21,34 +23,45 @@ public class DOTFileManager {
 	FileWriter fw;
 	BufferedWriter bw;
 	FileReader fr;
+	public DataFileManager dfm;
+
 	static File directory;
 
 	public DOTFileManager() throws IOException {
-		System.out.println("outputs_directory: " + outputs_directory);
-		System.out.println(createDirName());
-		directory = new File(outputs_directory + createDirName());
-		boolean successful = directory.mkdir();
-		System.out.println(directory.getAbsolutePath());
 
-		if (successful) {
-			System.out.println("directory created: " + directory.getName());
-		} else {
-			System.out.println("directory " + directory.getName()
-					+ " not created");
+		if (outputs_directory != "none") {
+			System.out.println("outputs_directory: " + outputs_directory);
+			System.out.println(createDirName());
+			directory = new File(outputs_directory + createDirName());
+			boolean successful = directory.mkdir();
+			System.out.println(directory.getAbsolutePath());
+
+			if (successful) {
+				System.out.println("directory created: " + directory.getName());
+			} else {
+				System.out.println("directory " + directory.getName()
+						+ " not created");
+			}
 		}
 
-		file = new File(directory.getAbsoluteFile() + "/"
-				+ Main.history.parameters.FILE_NAME + ".dot");
-		file.createNewFile();
-		fw = new FileWriter(file);
-		bw = new BufferedWriter(fw);
+		dfm = new DataFileManager(directory.getAbsoluteFile(),outputs_directory);
 
-		writeToFile("graph " + Main.history.parameters.NAME + " {");
-		writeToFile("    label = " + Main.history.parameters.NAME + ";");
-		writeToFile("    " + Parameters.DOT_PARAMS);
+		if (outputs_directory != "none") {
+			file = new File(directory.getAbsoluteFile() + "/"
+					+ Main.history.parameters.FILE_NAME + ".dot");
 
-		generateGenerationsSubgraph();
-		generateRankingsAttributes();
+			file.createNewFile();
+			fw = new FileWriter(file);
+			bw = new BufferedWriter(fw);
+
+			writeToFile("graph " + Main.history.parameters.NAME + " {");
+			writeToFile("    label = <<FONT POINT-SIZE=\"80\">"
+					+ Main.history.parameters.NAME + "</FONT>>;");
+			writeToFile("    " + Parameters.DOT_PARAMS);
+
+			generateGenerationsSubgraph();
+			generateRankingsAttributes();
+		}
 	}
 
 	private void generateRankingsAttributes() throws IOException {
@@ -85,9 +98,21 @@ public class DOTFileManager {
 		writeToFile("    }");
 	}
 
-	public void createRelation(Patent parent, Patent child) throws IOException {
-		// A -> B;
-		writeToFile("    " + parent.getID() + " -- " + child.getID() + ";");
+	public void createRelation(Patent parent, Patent child,
+			ArrayList<Patent> pats) throws IOException {
+		int totalPatents = pats.size();
+
+		int maxChildren = (int) (totalPatents / 2);
+
+		// has what percent of maxChildren?
+		float percentChildren = (float) ((float) parent.getChildren().size() / (float) maxChildren);
+
+		float penwidth = percentChildren * 30f;
+
+		// A -- B [color=color of parent];
+		writeToFile("    " + parent.getID() + " -- " + child.getID()
+				+ "[color=" + parent.getColor() + " penwidth=" + penwidth
+				+ "];");
 	}
 
 	void writeToFile(String str) throws IOException {
@@ -103,6 +128,26 @@ public class DOTFileManager {
 
 	public void createColor(Patent p) throws IOException {
 		writeToFile("    " + p.getID() + " [color=" + p.getColor() + "]");
+	}
+
+	public void createNodeSize(Patent p, ArrayList<Patent> pats)
+			throws IOException {
+		int totalPatents = pats.size();
+
+		int maxChildren = (int) (totalPatents / 2);
+
+		// has what percent of maxChildren?
+		float percentChildren = (float) ((float) p.getChildren().size() / (float) maxChildren);
+
+		float size = percentChildren * 8f;
+
+		if (size < 0.3f) {
+			size = 0.3f;
+		}
+
+		int fontsize = (int) (size * 20);
+		writeToFile("    " + p.getID() + " [width=" + size + " fontsize="
+				+ fontsize + "]");
 	}
 
 	public String createDirName() {
@@ -123,4 +168,5 @@ public class DOTFileManager {
 		s = s.replace(".", "");
 		return s;
 	}
+
 }

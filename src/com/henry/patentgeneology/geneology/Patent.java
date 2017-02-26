@@ -118,7 +118,7 @@ public class Patent {
 
 	static ArrayList<String> patentColors;
 
-	static String[] rawPatentColors = { "red", "indigo", "blue", "green",
+	static String[] rawPatentColors = { "black", "red", "indigo", "blue", "green",
 			"purple", "cyan", "tan", "darkgreen" };
 
 	public static void generatePatentColors(int colorcount) {

@@ -9,8 +9,8 @@ public class Parameters {
 	 */
 
 	public static String DOT_PARAMS = "labelloc=tp; rankdir=TD;"
-			+ "graph [size=7, ratio=expand, splines=polyline, nodesep=0.01, ranksep=0.5];"
-			+ "node[color=black style=filled shape=box fontcolor=white fixedsize=true width=.2 height=.1 fontsize=4];"
+			+ "graph [size=7, ratio=expand, splines=splines, nodesep=0.1, ranksep=1];"
+			+ "node[color=black style=filled shape=circle fontcolor=white fixedsize=true fontsize=4];"
 			+ "edge[penwidth=.1];";
 
 	public int PatentsPerGeneation(Generation g) {
@@ -25,7 +25,7 @@ public class Parameters {
 	float AgeFactorFunction(float f) {
 		// follow equation y = 1/x^a
 		// System.out.println(1 / (f * STRENGTH_AGE_EFFECT));
-		return (float) (1 / Math.pow(f, STRENGTH_AGE_EFFECT));
+		return (float) (400 / Math.pow(f, STRENGTH_AGE_EFFECT));
 	}
 
 	float RichFactorFunction(float f) {
@@ -49,6 +49,7 @@ public class Parameters {
 	public int GENERATIONS;
 
 	public boolean COLORS = true;
+	public boolean FLEX_SIZES = true;
 
 	public float STRENGTH_AGE_EFFECT;
 

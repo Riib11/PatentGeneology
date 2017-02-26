@@ -9,7 +9,7 @@ import com.henry.patentgeneology.DOTFileManager;
 public class History {
 
 	public ArrayList<Generation> generations;
-	ArrayList<Patent> patents;
+	public ArrayList<Patent> patents;
 
 	public DOTFileManager dotFileManager;
 
@@ -107,21 +107,23 @@ public class History {
 		return rand.nextFloat() * (max - min) + min;
 	}
 
-	// TODO Make Generate file in graphviz format
 	public void outputData() throws IOException {
+		for (Patent p : this.patents) {
+			for (Patent child : p.getChildren()) {
+				this.dotFileManager.createRelation(p, child, patents);
+			}
+		}
+
 		if (parameters.COLORS) {
 			for (Patent p : this.patents) {
 				this.dotFileManager.createColor(p);
 			}
 		}
-		for (Patent p : this.patents) {
-			for (Patent child : p.getChildren()) {
-				this.dotFileManager.createRelation(p, child);
+		if (parameters.FLEX_SIZES) {
+			for (Patent p : this.patents) {
+				this.dotFileManager.createNodeSize(p, patents);
 			}
 		}
-
-		// System.out.println("Generations: " + this.generations.size());
-		// System.out.println("Patents: " + this.patents.size());
 
 		int[] counter = new int[this.parameters.GENERATIONS];
 		for (Patent p : this.patents) {
@@ -132,10 +134,7 @@ public class History {
 			}
 		}
 
-		for (int i = 0; i < counter.length; i++) {
-			// System.out.println("Age discrepancy " + i + ": "
-			// + ((float) counter[i] / (float) patents.size()));
-		}
+		dotFileManager.dfm.createData(this);
 	}
 
 	public void initDOTFile() throws IOException {

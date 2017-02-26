@@ -1,0 +1,6 @@
+# - Data - - - - - - - - - - - - - - - - - - - - - - - - # 
+
+Average Children: 2.8421052
+Average Parents: 2.8421052
+Percent Homogeneous Relationships: 52.592594%
+Average Parent-Child Generation Difference: 2.9407408

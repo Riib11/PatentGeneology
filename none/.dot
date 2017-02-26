@@ -1,0 +1,478 @@
+graph  {
+    label = <<FONT POINT-SIZE="80"></FONT>>;
+    labelloc=tp; rankdir=TD;graph [size=7, ratio=expand, splines=polyline, nodesep=0.1, ranksep=1];node[color=black style=filled shape=circle fontcolor=white fixedsize=true fontsize=4];edge[penwidth=.1];
+    subgraph Generations {
+        node[color=grey style=filled fontsize=12 shape=cds fontcolor=black fixedsize=false];edge[style=invis]
+        Gen0 -- Gen1 -- Gen2 -- Gen3 -- Gen4 -- Gen5 -- Gen6 -- Gen7 -- Gen8 -- Gen9;
+    }
+    {rank=same;Gen0;G0P0;G0P1;G0P2;G0P3;G0P4;}
+    {rank=same;Gen1;G1P0;G1P1;G1P2;G1P3;G1P4;G1P5;}
+    {rank=same;Gen2;G2P0;G2P1;G2P2;G2P3;G2P4;G2P5;G2P6;}
+    {rank=same;Gen3;G3P0;G3P1;G3P2;G3P3;G3P4;G3P5;G3P6;G3P7;}
+    {rank=same;Gen4;G4P0;G4P1;G4P2;G4P3;G4P4;G4P5;G4P6;G4P7;G4P8;}
+    {rank=same;Gen5;G5P0;G5P1;G5P2;G5P3;G5P4;G5P5;G5P6;G5P7;G5P8;G5P9;}
+    {rank=same;Gen6;G6P0;G6P1;G6P2;G6P3;G6P4;G6P5;G6P6;G6P7;G6P8;G6P9;G6P10;}
+    {rank=same;Gen7;G7P0;G7P1;G7P2;G7P3;G7P4;G7P5;G7P6;G7P7;G7P8;G7P9;G7P10;G7P11;}
+    {rank=same;Gen8;G8P0;G8P1;G8P2;G8P3;G8P4;G8P5;G8P6;G8P7;G8P8;G8P9;G8P10;G8P11;G8P12;}
+    {rank=same;Gen9;G9P0;G9P1;G9P2;G9P3;G9P4;G9P5;G9P6;G9P7;G9P8;G9P9;G9P10;G9P11;G9P12;G9P13;}
+    G0P0 -- G1P4[color=black penwidth=5.106383];
+    G0P0 -- G1P5[color=black penwidth=5.106383];
+    G0P0 -- G2P6[color=black penwidth=5.106383];
+    G0P0 -- G3P1[color=black penwidth=5.106383];
+    G0P0 -- G4P8[color=black penwidth=5.106383];
+    G0P0 -- G5P6[color=black penwidth=5.106383];
+    G0P0 -- G7P5[color=black penwidth=5.106383];
+    G0P0 -- G8P3[color=black penwidth=5.106383];
+    G0P1 -- G1P0[color=red penwidth=9.574468];
+    G0P1 -- G1P1[color=red penwidth=9.574468];
+    G0P1 -- G1P2[color=red penwidth=9.574468];
+    G0P1 -- G1P4[color=red penwidth=9.574468];
+    G0P1 -- G2P0[color=red penwidth=9.574468];
+    G0P1 -- G2P1[color=red penwidth=9.574468];
+    G0P1 -- G2P4[color=red penwidth=9.574468];
+    G0P1 -- G3P0[color=red penwidth=9.574468];
+    G0P1 -- G4P0[color=red penwidth=9.574468];
+    G0P1 -- G4P2[color=red penwidth=9.574468];
+    G0P1 -- G4P3[color=red penwidth=9.574468];
+    G0P1 -- G5P3[color=red penwidth=9.574468];
+    G0P1 -- G5P4[color=red penwidth=9.574468];
+    G0P1 -- G7P2[color=red penwidth=9.574468];
+    G0P1 -- G9P11[color=red penwidth=9.574468];
+    G0P2 -- G1P0[color=red penwidth=9.574468];
+    G0P2 -- G1P1[color=red penwidth=9.574468];
+    G0P2 -- G1P3[color=red penwidth=9.574468];
+    G0P2 -- G1P5[color=red penwidth=9.574468];
+    G0P2 -- G2P2[color=red penwidth=9.574468];
+    G0P2 -- G3P0[color=red penwidth=9.574468];
+    G0P2 -- G3P1[color=red penwidth=9.574468];
+    G0P2 -- G3P4[color=red penwidth=9.574468];
+    G0P2 -- G3P7[color=red penwidth=9.574468];
+    G0P2 -- G4P5[color=red penwidth=9.574468];
+    G0P2 -- G6P10[color=red penwidth=9.574468];
+    G0P2 -- G7P4[color=red penwidth=9.574468];
+    G0P2 -- G9P0[color=red penwidth=9.574468];
+    G0P2 -- G9P3[color=red penwidth=9.574468];
+    G0P2 -- G9P7[color=red penwidth=9.574468];
+    G0P3 -- G1P0[color=red penwidth=7.0212765];
+    G0P3 -- G1P2[color=red penwidth=7.0212765];
+    G0P3 -- G1P3[color=red penwidth=7.0212765];
+    G0P3 -- G1P4[color=red penwidth=7.0212765];
+    G0P3 -- G1P5[color=red penwidth=7.0212765];
+    G0P3 -- G2P1[color=red penwidth=7.0212765];
+    G0P3 -- G2P2[color=red penwidth=7.0212765];
+    G0P3 -- G3P0[color=red penwidth=7.0212765];
+    G0P3 -- G3P6[color=red penwidth=7.0212765];
+    G0P3 -- G3P7[color=red penwidth=7.0212765];
+    G0P3 -- G5P7[color=red penwidth=7.0212765];
+    G0P4 -- G1P1[color=red penwidth=8.297873];
+    G0P4 -- G1P2[color=red penwidth=8.297873];
+    G0P4 -- G1P3[color=red penwidth=8.297873];
+    G0P4 -- G2P3[color=red penwidth=8.297873];
+    G0P4 -- G2P5[color=red penwidth=8.297873];
+    G0P4 -- G2P6[color=red penwidth=8.297873];
+    G0P4 -- G3P3[color=red penwidth=8.297873];
+    G0P4 -- G4P6[color=red penwidth=8.297873];
+    G0P4 -- G4P8[color=red penwidth=8.297873];
+    G0P4 -- G5P7[color=red penwidth=8.297873];
+    G0P4 -- G6P10[color=red penwidth=8.297873];
+    G0P4 -- G7P3[color=red penwidth=8.297873];
+    G0P4 -- G8P10[color=red penwidth=8.297873];
+    G1P0 -- G2P3[color=red penwidth=3.1914895];
+    G1P0 -- G2P5[color=red penwidth=3.1914895];
+    G1P0 -- G4P5[color=red penwidth=3.1914895];
+    G1P0 -- G6P2[color=red penwidth=3.1914895];
+    G1P0 -- G6P10[color=red penwidth=3.1914895];
+    G1P1 -- G2P0[color=red penwidth=9.574468];
+    G1P1 -- G2P2[color=red penwidth=9.574468];
+    G1P1 -- G2P4[color=red penwidth=9.574468];
+    G1P1 -- G2P5[color=red penwidth=9.574468];
+    G1P1 -- G3P2[color=red penwidth=9.574468];
+    G1P1 -- G3P3[color=red penwidth=9.574468];
+    G1P1 -- G3P5[color=red penwidth=9.574468];
+    G1P1 -- G4P6[color=red penwidth=9.574468];
+    G1P1 -- G4P7[color=red penwidth=9.574468];
+    G1P1 -- G5P8[color=red penwidth=9.574468];
+    G1P1 -- G6P6[color=red penwidth=9.574468];
+    G1P1 -- G6P9[color=red penwidth=9.574468];
+    G1P1 -- G7P5[color=red penwidth=9.574468];
+    G1P1 -- G7P8[color=red penwidth=9.574468];
+    G1P1 -- G8P7[color=red penwidth=9.574468];
+    G1P2 -- G2P1[color=black penwidth=3.8297873];
+    G1P2 -- G2P4[color=black penwidth=3.8297873];
+    G1P2 -- G3P7[color=black penwidth=3.8297873];
+    G1P2 -- G5P8[color=black penwidth=3.8297873];
+    G1P2 -- G7P0[color=black penwidth=3.8297873];
+    G1P2 -- G7P10[color=black penwidth=3.8297873];
+    G1P3 -- G2P0[color=red penwidth=5.106383];
+    G1P3 -- G2P3[color=red penwidth=5.106383];
+    G1P3 -- G2P6[color=red penwidth=5.106383];
+    G1P3 -- G3P1[color=red penwidth=5.106383];
+    G1P3 -- G3P4[color=red penwidth=5.106383];
+    G1P3 -- G6P7[color=red penwidth=5.106383];
+    G1P3 -- G8P12[color=red penwidth=5.106383];
+    G1P3 -- G9P2[color=red penwidth=5.106383];
+    G1P4 -- G3P2[color=red penwidth=2.5531914];
+    G1P4 -- G4P3[color=red penwidth=2.5531914];
+    G1P4 -- G5P2[color=red penwidth=2.5531914];
+    G1P4 -- G7P7[color=red penwidth=2.5531914];
+    G1P5 -- G4P0[color=red penwidth=1.2765957];
+    G1P5 -- G4P3[color=red penwidth=1.2765957];
+    G2P0 -- G3P2[color=black penwidth=1.2765957];
+    G2P0 -- G6P5[color=black penwidth=1.2765957];
+    G2P1 -- G3P6[color=red penwidth=2.5531914];
+    G2P1 -- G4P7[color=red penwidth=2.5531914];
+    G2P1 -- G6P6[color=red penwidth=2.5531914];
+    G2P1 -- G9P12[color=red penwidth=2.5531914];
+    G2P2 -- G7P1[color=red penwidth=1.2765957];
+    G2P2 -- G7P6[color=red penwidth=1.2765957];
+    G2P3 -- G6P1[color=black penwidth=2.5531914];
+    G2P3 -- G7P11[color=black penwidth=2.5531914];
+    G2P3 -- G8P1[color=black penwidth=2.5531914];
+    G2P3 -- G9P1[color=black penwidth=2.5531914];
+    G2P4 -- G3P4[color=black penwidth=5.744681];
+    G2P4 -- G5P3[color=black penwidth=5.744681];
+    G2P4 -- G6P7[color=black penwidth=5.744681];
+    G2P4 -- G6P8[color=black penwidth=5.744681];
+    G2P4 -- G7P8[color=black penwidth=5.744681];
+    G2P4 -- G8P2[color=black penwidth=5.744681];
+    G2P4 -- G8P9[color=black penwidth=5.744681];
+    G2P4 -- G9P3[color=black penwidth=5.744681];
+    G2P4 -- G9P8[color=black penwidth=5.744681];
+    G2P5 -- G3P5[color=red penwidth=3.8297873];
+    G2P5 -- G4P1[color=red penwidth=3.8297873];
+    G2P5 -- G4P2[color=red penwidth=3.8297873];
+    G2P5 -- G5P6[color=red penwidth=3.8297873];
+    G2P5 -- G6P2[color=red penwidth=3.8297873];
+    G2P5 -- G7P4[color=red penwidth=3.8297873];
+    G2P6 -- G3P3[color=red penwidth=4.468085];
+    G2P6 -- G3P5[color=red penwidth=4.468085];
+    G2P6 -- G3P6[color=red penwidth=4.468085];
+    G2P6 -- G4P4[color=red penwidth=4.468085];
+    G2P6 -- G4P7[color=red penwidth=4.468085];
+    G2P6 -- G6P3[color=red penwidth=4.468085];
+    G2P6 -- G8P11[color=red penwidth=4.468085];
+    G3P0 -- G5P5[color=red penwidth=0.63829786];
+    G3P1 -- G4P2[color=red penwidth=2.5531914];
+    G3P1 -- G6P1[color=red penwidth=2.5531914];
+    G3P1 -- G6P6[color=red penwidth=2.5531914];
+    G3P1 -- G7P1[color=red penwidth=2.5531914];
+    G3P2 -- G4P0[color=red penwidth=1.9148936];
+    G3P2 -- G6P8[color=red penwidth=1.9148936];
+    G3P2 -- G7P4[color=red penwidth=1.9148936];
+    G3P3 -- G4P6[color=red penwidth=2.5531914];
+    G3P3 -- G6P5[color=red penwidth=2.5531914];
+    G3P3 -- G7P0[color=red penwidth=2.5531914];
+    G3P3 -- G8P0[color=red penwidth=2.5531914];
+    G3P4 -- G4P5[color=black penwidth=4.468085];
+    G3P4 -- G5P9[color=black penwidth=4.468085];
+    G3P4 -- G6P3[color=black penwidth=4.468085];
+    G3P4 -- G7P3[color=black penwidth=4.468085];
+    G3P4 -- G8P1[color=black penwidth=4.468085];
+    G3P4 -- G8P8[color=black penwidth=4.468085];
+    G3P4 -- G9P12[color=black penwidth=4.468085];
+    G3P5 -- G4P1[color=black penwidth=4.468085];
+    G3P5 -- G4P4[color=black penwidth=4.468085];
+    G3P5 -- G5P1[color=black penwidth=4.468085];
+    G3P5 -- G6P4[color=black penwidth=4.468085];
+    G3P5 -- G7P8[color=black penwidth=4.468085];
+    G3P5 -- G7P9[color=black penwidth=4.468085];
+    G3P5 -- G9P2[color=black penwidth=4.468085];
+    G3P6 -- G4P4[color=red penwidth=1.2765957];
+    G3P6 -- G5P5[color=red penwidth=1.2765957];
+    G3P7 -- G4P1[color=black penwidth=4.468085];
+    G3P7 -- G4P8[color=black penwidth=4.468085];
+    G3P7 -- G5P1[color=black penwidth=4.468085];
+    G3P7 -- G5P5[color=black penwidth=4.468085];
+    G3P7 -- G5P8[color=black penwidth=4.468085];
+    G3P7 -- G6P0[color=black penwidth=4.468085];
+    G3P7 -- G9P13[color=black penwidth=4.468085];
+    G4P0 -- G5P1[color=red penwidth=3.8297873];
+    G4P0 -- G5P3[color=red penwidth=3.8297873];
+    G4P0 -- G6P0[color=red penwidth=3.8297873];
+    G4P0 -- G9P0[color=red penwidth=3.8297873];
+    G4P0 -- G9P5[color=red penwidth=3.8297873];
+    G4P0 -- G9P13[color=red penwidth=3.8297873];
+    G4P1 -- G5P6[color=black penwidth=2.5531914];
+    G4P1 -- G5P9[color=black penwidth=2.5531914];
+    G4P1 -- G8P7[color=black penwidth=2.5531914];
+    G4P1 -- G9P9[color=black penwidth=2.5531914];
+    G4P2 -- G6P4[color=black penwidth=2.5531914];
+    G4P2 -- G8P3[color=black penwidth=2.5531914];
+    G4P2 -- G8P6[color=black penwidth=2.5531914];
+    G4P2 -- G8P9[color=black penwidth=2.5531914];
+    G4P3 -- G5P0[color=red penwidth=1.9148936];
+    G4P3 -- G8P5[color=red penwidth=1.9148936];
+    G4P3 -- G9P10[color=red penwidth=1.9148936];
+    G4P4 -- G5P4[color=black penwidth=3.8297873];
+    G4P4 -- G5P9[color=black penwidth=3.8297873];
+    G4P4 -- G7P0[color=black penwidth=3.8297873];
+    G4P4 -- G7P9[color=black penwidth=3.8297873];
+    G4P4 -- G8P4[color=black penwidth=3.8297873];
+    G4P4 -- G9P6[color=black penwidth=3.8297873];
+    G4P5 -- G5P2[color=red penwidth=3.1914895];
+    G4P5 -- G6P1[color=red penwidth=3.1914895];
+    G4P5 -- G7P10[color=red penwidth=3.1914895];
+    G4P5 -- G8P2[color=red penwidth=3.1914895];
+    G4P5 -- G9P3[color=red penwidth=3.1914895];
+    G4P6 -- G5P0[color=black penwidth=3.1914895];
+    G4P6 -- G5P2[color=black penwidth=3.1914895];
+    G4P6 -- G5P4[color=black penwidth=3.1914895];
+    G4P6 -- G5P7[color=black penwidth=3.1914895];
+    G4P6 -- G8P4[color=black penwidth=3.1914895];
+    G4P7 -- G8P3[color=black penwidth=1.2765957];
+    G4P7 -- G9P11[color=black penwidth=1.2765957];
+    G4P8 -- G5P0[color=red penwidth=2.5531914];
+    G4P8 -- G6P9[color=red penwidth=2.5531914];
+    G4P8 -- G8P0[color=red penwidth=2.5531914];
+    G4P8 -- G8P5[color=red penwidth=2.5531914];
+    G5P0 -- G6P3[color=red penwidth=1.9148936];
+    G5P0 -- G7P3[color=red penwidth=1.9148936];
+    G5P0 -- G7P11[color=red penwidth=1.9148936];
+    G5P2 -- G6P9[color=red penwidth=2.5531914];
+    G5P2 -- G8P1[color=red penwidth=2.5531914];
+    G5P2 -- G8P2[color=red penwidth=2.5531914];
+    G5P2 -- G8P12[color=red penwidth=2.5531914];
+    G5P3 -- G6P5[color=black penwidth=0.63829786];
+    G5P4 -- G6P2[color=black penwidth=1.9148936];
+    G5P4 -- G6P4[color=black penwidth=1.9148936];
+    G5P4 -- G7P2[color=black penwidth=1.9148936];
+    G5P5 -- G7P10[color=red penwidth=0.63829786];
+    G5P7 -- G6P7[color=red penwidth=1.9148936];
+    G5P7 -- G9P1[color=red penwidth=1.9148936];
+    G5P7 -- G9P12[color=red penwidth=1.9148936];
+    G5P8 -- G7P7[color=red penwidth=1.2765957];
+    G5P8 -- G8P7[color=red penwidth=1.2765957];
+    G5P9 -- G6P0[color=black penwidth=1.9148936];
+    G5P9 -- G6P8[color=black penwidth=1.9148936];
+    G5P9 -- G7P11[color=black penwidth=1.9148936];
+    G6P0 -- G7P1[color=red penwidth=2.5531914];
+    G6P0 -- G7P5[color=red penwidth=2.5531914];
+    G6P0 -- G7P9[color=red penwidth=2.5531914];
+    G6P0 -- G9P9[color=red penwidth=2.5531914];
+    G6P1 -- G7P2[color=black penwidth=1.2765957];
+    G6P1 -- G9P6[color=black penwidth=1.2765957];
+    G6P2 -- G9P2[color=red penwidth=1.2765957];
+    G6P2 -- G9P10[color=red penwidth=1.2765957];
+    G6P3 -- G8P10[color=black penwidth=1.2765957];
+    G6P3 -- G9P5[color=black penwidth=1.2765957];
+    G6P4 -- G8P4[color=red penwidth=1.9148936];
+    G6P4 -- G8P11[color=red penwidth=1.9148936];
+    G6P4 -- G9P4[color=red penwidth=1.9148936];
+    G6P5 -- G7P6[color=red penwidth=1.9148936];
+    G6P5 -- G8P0[color=red penwidth=1.9148936];
+    G6P5 -- G8P5[color=red penwidth=1.9148936];
+    G6P7 -- G9P8[color=red penwidth=0.63829786];
+    G6P9 -- G8P6[color=black penwidth=1.2765957];
+    G6P9 -- G8P11[color=black penwidth=1.2765957];
+    G6P10 -- G7P6[color=red penwidth=1.2765957];
+    G6P10 -- G7P7[color=red penwidth=1.2765957];
+    G7P1 -- G8P10[color=black penwidth=0.63829786];
+    G7P2 -- G8P8[color=black penwidth=1.2765957];
+    G7P2 -- G9P0[color=black penwidth=1.2765957];
+    G7P3 -- G9P5[color=red penwidth=0.63829786];
+    G7P4 -- G8P12[color=red penwidth=0.63829786];
+    G7P5 -- G8P9[color=red penwidth=0.63829786];
+    G7P6 -- G8P6[color=black penwidth=1.2765957];
+    G7P6 -- G9P4[color=black penwidth=1.2765957];
+    G7P8 -- G8P8[color=black penwidth=0.63829786];
+    G7P11 -- G9P8[color=black penwidth=1.2765957];
+    G7P11 -- G9P11[color=black penwidth=1.2765957];
+    G8P0 -- G9P4[color=red penwidth=1.2765957];
+    G8P0 -- G9P10[color=red penwidth=1.2765957];
+    G8P3 -- G9P13[color=red penwidth=0.63829786];
+    G8P6 -- G9P7[color=red penwidth=0.63829786];
+    G8P7 -- G9P9[color=red penwidth=0.63829786];
+    G8P9 -- G9P7[color=red penwidth=0.63829786];
+    G8P11 -- G9P1[color=red penwidth=0.63829786];
+    G8P12 -- G9P6[color=red penwidth=0.63829786];
+    G0P0 [color=black]
+    G0P1 [color=red]
+    G0P2 [color=red]
+    G0P3 [color=red]
+    G0P4 [color=red]
+    G1P0 [color=red]
+    G1P1 [color=red]
+    G1P2 [color=black]
+    G1P3 [color=red]
+    G1P4 [color=red]
+    G1P5 [color=red]
+    G2P0 [color=black]
+    G2P1 [color=red]
+    G2P2 [color=red]
+    G2P3 [color=black]
+    G2P4 [color=black]
+    G2P5 [color=red]
+    G2P6 [color=red]
+    G3P0 [color=red]
+    G3P1 [color=red]
+    G3P2 [color=red]
+    G3P3 [color=red]
+    G3P4 [color=black]
+    G3P5 [color=black]
+    G3P6 [color=red]
+    G3P7 [color=black]
+    G4P0 [color=red]
+    G4P1 [color=black]
+    G4P2 [color=black]
+    G4P3 [color=red]
+    G4P4 [color=black]
+    G4P5 [color=red]
+    G4P6 [color=black]
+    G4P7 [color=black]
+    G4P8 [color=red]
+    G5P0 [color=red]
+    G5P1 [color=black]
+    G5P2 [color=red]
+    G5P3 [color=black]
+    G5P4 [color=black]
+    G5P5 [color=red]
+    G5P6 [color=black]
+    G5P7 [color=red]
+    G5P8 [color=red]
+    G5P9 [color=black]
+    G6P0 [color=red]
+    G6P1 [color=black]
+    G6P2 [color=red]
+    G6P3 [color=black]
+    G6P4 [color=red]
+    G6P5 [color=red]
+    G6P6 [color=red]
+    G6P7 [color=red]
+    G6P8 [color=red]
+    G6P9 [color=black]
+    G6P10 [color=red]
+    G7P0 [color=black]
+    G7P1 [color=black]
+    G7P2 [color=black]
+    G7P3 [color=red]
+    G7P4 [color=red]
+    G7P5 [color=red]
+    G7P6 [color=black]
+    G7P7 [color=red]
+    G7P8 [color=black]
+    G7P9 [color=black]
+    G7P10 [color=red]
+    G7P11 [color=black]
+    G8P0 [color=red]
+    G8P1 [color=red]
+    G8P2 [color=black]
+    G8P3 [color=red]
+    G8P4 [color=red]
+    G8P5 [color=black]
+    G8P6 [color=red]
+    G8P7 [color=red]
+    G8P8 [color=black]
+    G8P9 [color=red]
+    G8P10 [color=red]
+    G8P11 [color=red]
+    G8P12 [color=red]
+    G9P0 [color=red]
+    G9P1 [color=black]
+    G9P2 [color=black]
+    G9P3 [color=black]
+    G9P4 [color=black]
+    G9P5 [color=red]
+    G9P6 [color=red]
+    G9P7 [color=black]
+    G9P8 [color=red]
+    G9P9 [color=black]
+    G9P10 [color=red]
+    G9P11 [color=red]
+    G9P12 [color=black]
+    G9P13 [color=black]
+    G0P0 [width=1.3617021 fontsize=27]
+    G0P1 [width=2.5531914 fontsize=51]
+    G0P2 [width=2.5531914 fontsize=51]
+    G0P3 [width=1.8723404 fontsize=37]
+    G0P4 [width=2.212766 fontsize=44]
+    G1P0 [width=0.85106385 fontsize=17]
+    G1P1 [width=2.5531914 fontsize=51]
+    G1P2 [width=1.0212766 fontsize=20]
+    G1P3 [width=1.3617021 fontsize=27]
+    G1P4 [width=0.68085104 fontsize=13]
+    G1P5 [width=0.34042552 fontsize=6]
+    G2P0 [width=0.34042552 fontsize=6]
+    G2P1 [width=0.68085104 fontsize=13]
+    G2P2 [width=0.34042552 fontsize=6]
+    G2P3 [width=0.68085104 fontsize=13]
+    G2P4 [width=1.531915 fontsize=30]
+    G2P5 [width=1.0212766 fontsize=20]
+    G2P6 [width=1.1914893 fontsize=23]
+    G3P0 [width=0.3 fontsize=6]
+    G3P1 [width=0.68085104 fontsize=13]
+    G3P2 [width=0.5106383 fontsize=10]
+    G3P3 [width=0.68085104 fontsize=13]
+    G3P4 [width=1.1914893 fontsize=23]
+    G3P5 [width=1.1914893 fontsize=23]
+    G3P6 [width=0.34042552 fontsize=6]
+    G3P7 [width=1.1914893 fontsize=23]
+    G4P0 [width=1.0212766 fontsize=20]
+    G4P1 [width=0.68085104 fontsize=13]
+    G4P2 [width=0.68085104 fontsize=13]
+    G4P3 [width=0.5106383 fontsize=10]
+    G4P4 [width=1.0212766 fontsize=20]
+    G4P5 [width=0.85106385 fontsize=17]
+    G4P6 [width=0.85106385 fontsize=17]
+    G4P7 [width=0.34042552 fontsize=6]
+    G4P8 [width=0.68085104 fontsize=13]
+    G5P0 [width=0.5106383 fontsize=10]
+    G5P1 [width=0.3 fontsize=6]
+    G5P2 [width=0.68085104 fontsize=13]
+    G5P3 [width=0.3 fontsize=6]
+    G5P4 [width=0.5106383 fontsize=10]
+    G5P5 [width=0.3 fontsize=6]
+    G5P6 [width=0.3 fontsize=6]
+    G5P7 [width=0.5106383 fontsize=10]
+    G5P8 [width=0.34042552 fontsize=6]
+    G5P9 [width=0.5106383 fontsize=10]
+    G6P0 [width=0.68085104 fontsize=13]
+    G6P1 [width=0.34042552 fontsize=6]
+    G6P2 [width=0.34042552 fontsize=6]
+    G6P3 [width=0.34042552 fontsize=6]
+    G6P4 [width=0.5106383 fontsize=10]
+    G6P5 [width=0.5106383 fontsize=10]
+    G6P6 [width=0.3 fontsize=6]
+    G6P7 [width=0.3 fontsize=6]
+    G6P8 [width=0.3 fontsize=6]
+    G6P9 [width=0.34042552 fontsize=6]
+    G6P10 [width=0.34042552 fontsize=6]
+    G7P0 [width=0.3 fontsize=6]
+    G7P1 [width=0.3 fontsize=6]
+    G7P2 [width=0.34042552 fontsize=6]
+    G7P3 [width=0.3 fontsize=6]
+    G7P4 [width=0.3 fontsize=6]
+    G7P5 [width=0.3 fontsize=6]
+    G7P6 [width=0.34042552 fontsize=6]
+    G7P7 [width=0.3 fontsize=6]
+    G7P8 [width=0.3 fontsize=6]
+    G7P9 [width=0.3 fontsize=6]
+    G7P10 [width=0.3 fontsize=6]
+    G7P11 [width=0.34042552 fontsize=6]
+    G8P0 [width=0.34042552 fontsize=6]
+    G8P1 [width=0.3 fontsize=6]
+    G8P2 [width=0.3 fontsize=6]
+    G8P3 [width=0.3 fontsize=6]
+    G8P4 [width=0.3 fontsize=6]
+    G8P5 [width=0.3 fontsize=6]
+    G8P6 [width=0.3 fontsize=6]
+    G8P7 [width=0.3 fontsize=6]
+    G8P8 [width=0.3 fontsize=6]
+    G8P9 [width=0.3 fontsize=6]
+    G8P10 [width=0.3 fontsize=6]
+    G8P11 [width=0.3 fontsize=6]
+    G8P12 [width=0.3 fontsize=6]
+    G9P0 [width=0.3 fontsize=6]
+    G9P1 [width=0.3 fontsize=6]
+    G9P2 [width=0.3 fontsize=6]
+    G9P3 [width=0.3 fontsize=6]
+    G9P4 [width=0.3 fontsize=6]
+    G9P5 [width=0.3 fontsize=6]
+    G9P6 [width=0.3 fontsize=6]
+    G9P7 [width=0.3 fontsize=6]
+    G9P8 [width=0.3 fontsize=6]
+    G9P9 [width=0.3 fontsize=6]
+    G9P10 [width=0.3 fontsize=6]
+    G9P11 [width=0.3 fontsize=6]
+    G9P12 [width=0.3 fontsize=6]
+    G9P13 [width=0.3 fontsize=6]
+}

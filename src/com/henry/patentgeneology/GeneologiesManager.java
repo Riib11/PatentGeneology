@@ -74,6 +74,27 @@ public class GeneologiesManager {
 				.println("Created Geneology: " + Main.history.parameters.NAME);
 	}
 
+	public void createGeneologyCustomName(String customname, float aes,
+			float res, float ces) throws IOException {
+		Main.history = new History(this.gens, this.initpatgen,
+				this.patgenprolifconst, this.parentpat, this.colorcount, aes,
+				res, ces);
+
+		Main.history.generateHistory();
+
+		Main.history.parameters.NAME = customname;
+		Main.history.parameters.FILE_NAME = customname;
+
+		Main.history.initDOTFile();
+
+		Main.history.outputData();
+
+		Main.history.dotFileManager.endFile();
+
+		System.out
+				.println("Created Geneology: " + Main.history.parameters.NAME);
+	}
+
 	static DecimalFormat df = new DecimalFormat("#.######");
 
 	private float format(float f) {
